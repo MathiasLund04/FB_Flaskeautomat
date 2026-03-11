@@ -12,7 +12,7 @@ public class WaterConsumer implements Runnable {
         while (true) {
 
             try {
-                Bottle bottle = waterBuffer.consume();
+                Bottle bottle = waterBuffer.consume(2);
 
                 if (bottle.getType().equals("Water")) {
                     System.out.println(bottle + " consumed in water crate");

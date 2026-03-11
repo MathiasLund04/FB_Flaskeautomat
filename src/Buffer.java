@@ -20,6 +20,7 @@ public class Buffer {
         lock.lock();
         try {
             while (queue.size() == capacity) {
+                System.out.println("Buffer full. Waiting for consumer...");
                 notFull.await();
             }
             queue.add(bottle);
@@ -30,18 +31,18 @@ public class Buffer {
         }
     }
 
-    public Bottle consume() throws InterruptedException {
+    public Bottle consume(int minItems) throws InterruptedException {
         lock.lock();
 
         try {
-            while (true){
-            if (queue.size() < 3) {
+            while (queue.size() < minItems) {
                 notEmpty.await();
             }
             Bottle bottle = queue.removeFirst();
-            notFull.signal();
-            return bottle;
+            if(queue.size() < 5) {
+                notFull.signal();
             }
+            return bottle;
         } finally {
             lock.unlock();
         }

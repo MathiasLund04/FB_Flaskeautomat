@@ -12,7 +12,7 @@ public class BeerConsumer implements Runnable {
         while (true) {
 
             try {
-                Bottle bottle = beerBuffer.consume();
+                Bottle bottle = beerBuffer.consume(2);
 
                 if (bottle.getType().equals("Beer")) {
                     System.out.println(bottle + " consumed in beer crate");

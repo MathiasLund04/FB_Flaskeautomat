@@ -21,7 +21,7 @@ public class Producer implements Runnable {
                     System.out.println("Producer produced bottle: " + bottle);
                 counter++;
                 buffer.produce(bottle);
-                Thread.sleep(3000);
+                Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

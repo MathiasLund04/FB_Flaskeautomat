@@ -16,7 +16,7 @@ public class Splitter implements Runnable {
     public void run() {
         while (true) {
                 try {
-                    Bottle bottle = drinkIn.consume();
+                    Bottle bottle = drinkIn.consume(15);
 
                     if (bottle.getType().equals("Beer")) {
                         System.out.println("Splitter sent " + bottle + " to beer crate");
@@ -27,7 +27,7 @@ public class Splitter implements Runnable {
                     } else {
                         System.out.println("Unknown Bottle type sent to trash");
                     }
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
 
 
                 } catch (InterruptedException e) {
